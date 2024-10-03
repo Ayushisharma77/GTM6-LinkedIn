@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dummy Website with Signup and Lead Generation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Initialize the Data Layer -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
+
+   <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KNMHXJHS');</script>
+  <!-- End Google Tag Manager -->
+
+    <script>
+        // Trigger standard event for tracking
+        function triggerStandardEvent(eventName) {
+            window.dataLayer.push({
+                'event': eventName
+            });
+            alert(`${eventName} event triggered.`);
+        }
+    </script>
+
+    <style>
+        .hero {
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEyfHx3ZWJ8fDB8fHx8MTYwMzk5OTU1MA&ixlib=rb-1.2.1&q=80&w=1500') no-repeat center center/cover;
+            color: white;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .content-section {
+            padding: 50px 0;
+        }
+        #products, #cart, #contact {
+            margin: 20px 0;
+        }
+        .product, #contact-form {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* CSS for mouse hover effect on images */
+.card-img-top {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transition smoothness for scaling and shadow */
+}
+
+.card-img-top:hover {
+    transform: scale(1.05); /* Slightly enlarge the image on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+/* Optional: Make sure the card doesn't shift when the image scales */
+.card {
+    overflow: hidden; /* Ensures image stays within its card boundaries */
+}
+
+        .button-container {
+            
+
+            display: flex;
+            justify-content: center; /* Centers the buttons horizontally */
+            align-items: center;     /* Centers the buttons vertically */
+            margin-top: 50px;        /* Adjust this to position the buttons lower on the page */
+            gap: 20px;  
+        }
+
+        .custom-button {
+            position: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: hsl(226, 100%, 50%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNMHXJHS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <!-- contact script for the dataLayer push -->
+<script>
+  function submitContactForm(event) {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      // Get the form data (for potential use in the event, like capturing the user's name or email)
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      // Push the custom contact event to the dataLayer
+      window.dataLayer.push({
+          'event': 'contact_event',
+          'form_data': {
+              'name': name,
+              'email': email,
+              'message': message
+          }
+      });
+
+      // Show an alert or confirmation message
+      alert('Thank you for contacting us! Your form has been submitted.');
+
+      // Optionally, reset the form after submission
+      document.getElementById('contact-form').reset();
+  }
+</script>
+
+<!--  signup script for the dataLayer push -->
+<script>
+  function triggerSignUpEvent() {
+      // Push the custom sign_event to the dataLayer
+      window.dataLayer.push({
+          'event': 'sign_event',
+          'user_id': '12345',  // Example data
+      'signup_method': 'email',  // Example data
+      'user_type': 'premium'  // Variable 3
+      });
+
+      // Show a confirmation message
+      alert('Sign Up event triggered!');
+  }
+</script>
+<!--  purchase script for the dataLayer push -->
+<script>
+  function purchaseEvent() {
+    window.dataLayer.push({
+      'event': 'event_purchase',
+      'transaction_id': '67890',  // Example data
+      'transaction_value': 99.99,  // Example data
+        'currency': 'USD'              // Variable 3
+    });
+  }
+</script>
+
+<script>
+  // Subscribe Function to capture the form submission and push the event to the dataLayer
+     function subscribeEvent(){
+    // Get the email value from the input field
+    
+    const email = document.getElementById('email').value;
+
+    // Push the subscription event and email data to the dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'subscribe_event',
+      'subscribe_data': {
+        'email': email
+      }
+    });
+  
+  
+
+    console.log('Subscribe event pushed to data layer with email:', email);
+
+    // Optionally, you can add form submission logic here (e.g., an AJAX request) or a success message
+  }
+
+
+</script>
+  <!--  AddToCart script for the dataLayer push -->
+<script>
+function AddToCart(){
+window.dataLayer.push({
+    'event': 'addToCart',
+    'ecommerce': {
+      'currencyCode': 'USD', // Set the currency of the transaction
+      'add': {                // 'add' actionFieldObject indicates adding to a cart
+        'products': [{        // List of productFieldObjects
+          'name': 'T-shirt',  // Name or ID is required
+          'id': 'P12345',
+          'price': '19.99',
+          'brand': 'BrandName',
+          'category': 'Apparel',
+          'variant': 'Blue',
+          'quantity': 1
+        }]
+      }
+    }
+  });
+}
+</script>
+
+<!------ AddToWhislist script for datalayer----->
+<script> 
+
+function AddToWhislist(){
+
+window.dataLayer.push({
+  'event': 'addToWishlist',
+  'ecommerce': {
+    'currencyCode': 'USD', // Set the currency of the transaction
+    'add': {               // 'add' actionFieldObject used to track wishlist action
+      'products': [{       // List of productFieldObjects
+        'name': 'Running Shoes',   // Name or ID is required
+        'id': 'RS12345',
+        'price': '49.99',
+        'brand': 'BrandName',
+        'category': 'Shoes',
+        'variant': 'Black',
+        'quantity': 1
+      }]
+    }
+  }
+});
+}
+ </script>
+
+</script>
+
+
+<script>
+     function Search(){
+// Function that triggers when the search button is clicked
+// document.getElementById('searchButton').addEventListener('click', function() {
+  // Capture the search query entered by the user
+ // var searchTerm = document.getElementById('searchInput').value;
+// });
+
+
+
+  // Push the search event data into the dataLayer
+  window.dataLayer.push({
+    'event': 'search',
+    'eventCategory': 'Search',
+    'eventAction': 'Click',
+   // 'eventLabel': searchTerm, // This will capture the actual search term
+    //'searchTerm': searchTerm   // You can also capture it separately
+  });
+  }
+
+</script>
+
+
+<!----BookAppointment script for datalayer-->
+<script>
+
+function BookAppointment() {
+window.dataLayer.push({
+  'event': 'bookAppointment',
+  'ecommerce': {
+    'currencyCode': 'USD', // Set the currency of the appointment or service
+    'add': {               // 'add' actionFieldObject indicates an addition action
+      'products': [{       // List of productFieldObjects representing the appointment
+        'name': 'Consultation Appointment', // Name or ID is required
+        'id': 'APT001',
+        'price': '100.00',
+        'category': 'Services',   // Define category as 'Services' or a specific type
+        'variant': 'General Consultation',
+        'quantity': 1,
+        'appointmentDate': '2024-10-01',  // Optional: Custom field for appointment date
+        'time': '10:00 AM'               // Optional: Custom field for appointment time
+      }]
+    }
+  }
+});
+}
+</script>
+
+<script>
+
+
+// Function to add hover event listeners for all images with the 'card-img-top' class
+function addHoverTracking() {
+    // Select all images inside the services section
+    const serviceImages = document.querySelectorAll('#services .card-img-top');
+
+    // Loop through each image and attach the hover event listener
+    serviceImages.forEach((img, index) => {
+        img.addEventListener('mouseover', function() {
+            const serviceName = this.closest('.card').querySelector('.card-title').innerText;
+            const serviceId = 'service' + (index + 1);  // Create a unique ID based on the index
+            const imageSrc = this.src;
+
+            // Push to the dataLayer
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'MouseHover',
+                'ecommerce': {
+                    'click': {
+                        'actionField': { 'list': 'Services Section' },  // Section name
+                        'products': [{
+                            'name': serviceName,   // Name of the service (dynamically retrieved from the card)
+                            'id': serviceId,       // Dynamically created ID based on index
+                            'category': 'Services',
+                            'position': index + 1, // Position based on order in the list
+                            'image': imageSrc      // URL of the image
+                        }]
+                    }
+                }
+            });
+        });
+    });
+}
+
+// Run the function after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', addHoverTracking);
+
+
+</script>
+
+<script>
+
+<!------ Feedback for datalayer--->
+function Feedback(){
+window.dataLayer.push({
+    'event': 'event_feedback',
+    'ecommerce': {
+      'actionField': {
+        'eventAction': 'Feedback',
+        'eventLabel': 'User clicked feedback button'
+      }
+    }
+  });
+}
+</script>
+
+<!-----Live chat-->
+<script>
+
+function livechat(){
+
+    window.dataLayer.push({
+  'event': 'event_liveChat',
+  'ecommerce': {
+    'actionField': {
+      'eventAction': 'Live Chat',
+      'eventLabel': 'User initiated live chat'
+    }
+  }
+});
+
+
+
+
+
+}
+</script>
+  
+<!----Share------->
+<script>
+
+function share(){
+
+    window.dataLayer.push({
+  'event': 'event_share',
+  'ecommerce': {
+    'actionField': {
+      'eventAction': 'Share',
+      'eventLabel': 'User clicked share button'
+    }
+  }
+});
+
+
+
+
+}
+
+
+</script>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">MyWebsite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      
+
+                  
+                          <button id="signup-button" class="btn btn-danger" onclick="triggerSignUpEvent()">Sign Up</button>
+                      
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Search Bar -->
+    <div class="container mt-4">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for products" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" onclick="Search()">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome to My Website</h1>
+            <p>Your one-stop solution for all things web.</p>
+            <button class="btn btn-primary" onclick="BookAppointment('leadGeneration')">Book appointment</button>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="content-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHdlYnxlbnwwfHx8fDE2Mzk5OTg2Nzc&ixlib=rb-1.2.1&q=80&w=400" class="card-img-top" alt="Service 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Web Development</h5>
+                            <p class="card-text">We build responsive and modern websites.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHx3ZWJ8fDB8fHx8MTYzOTk5ODY3Nw&ixlib=rb-1.2.1&q=80&w=400" class="card-img-top" alt="Service 2">
+                        <div class="card-body">
+                            <h5 class="card-title">SEO Optimization</h5>
+                            <p class="card-text">Enhance your website's visibility on search engines.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE0fHxkaWdpdGFsJTIwbWFya2V0aW5nfGVufDB8fHx8MTYzOTk5OTg2OA&ixlib=rb-1.2.1&q=80&w=400" class="card-img-top" alt="Service 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Digital Marketing</h5>
+                            <p class="card-text">Grow your business with our marketing strategies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="content-section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">About Us</h2>
+            <p>We are a team of passionate developers and designers who love creating beautiful and functional websites. With years of experience in the industry, we aim to deliver top-notch services to our clients.</p>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="products" class="content-section">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="product">
+                        <img src="https://images.unsplash.com/photo-1590577975181-b79e2f275b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDI0fHxwcm9kdWN0fGVufDB8fHx8MTYwMzkwMjY1OA&ixlib=rb-1.2.1&q=80&w=400" alt="Product 1" class="img-fluid mb-3">
+                        <h3>Product 1</h3>
+                        <p>Price: $25.00</p>
+                        <button class="add-to-cart" onclick="AddToCart('addToCart')" data-product-id="1" data-product-name="Product 1" data-product-price="25.00">Add to Cart</button>
+                        <button class="add-to-wishlist" onclick="AddToWhislist('addToWishlist')">Add to Wishlist</button>
+                        <button class="purchase" onclick="purchaseEvent('purchase')">Purchase</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product">
+                        <img src="https://images.unsplash.com/photo-1560472354-ea0581c06de0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE5fHxwcm9kdWN0fGVufDB8fHx8MTYwMzkwMjYyNA&ixlib=rb-1.2.1&q=80&w=400" alt="Product 2" class="img-fluid mb-3">
+                        <h3>Product 2</h3>
+                        <p>Price: $35.00</p>
+                        <button class="add-to-cart" onclick="AddToCart('addToCart')" data-product-id="2" data-product-name="Product 2" data-product-price="35.00">Add to Cart</button>
+                        <button class="add-to-wishlist" onclick="AddToWhislist('addToWishlist')">Add to Wishlist</button>
+                        <button class="purchase" onclick="purchaseEvent('purchase')">Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section id="subscribe" class="content-section bg-light">
+        <div class="container text-center">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with our latest products and offers.</p>
+            <form id="subscribe-form">
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email">
+                    <button class="btn btn-primary" type="submit" onclick="subscribeEvent()">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+   <!-- Contact Section -->
+<section id="contact" class="content-section">
+  <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form" onsubmit="submitContactForm(event)">
+          <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+</section>
+
+
+<div class="button-container">
+    <button id="feedback-btn" class="custom-button"  onclick="Feedback()">Feedback</button>
+    <button id="livechat-btn" class="custom-button" onclick="livechat()">Live Chat</button>
+    <button id="share-btn" class="custom-button" onclick="share()">Share</button>
+</div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
